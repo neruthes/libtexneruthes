@@ -1,0 +1,24 @@
+\newcommand{\Negold}[0]{\hskip 3.5pt\hfill}
+\newcommand{\Neg}[0]{\hskip 3.5pt plus 30pt}
+\newcommand{\tristarsepline}[0]{
+    \vspace{0.5em}%
+    \noindent\begin{minipage}{\linewidth}
+        \center
+        *\hspace{1.5em}*\hspace{1.5em}*
+    \end{minipage}%
+    \vspace{0.5em}
+}
+\newcommand{\pozhehao}[0]{%
+    {\fontspec{FandolSong}\CJKfontspec{FandolSong}——}%
+}
+\newcommand{\chineseindenting}[0]{
+	\setlength{\parindent}{2em}
+}
+
+% Footnote
+\newcommand{\blfootnote}[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}

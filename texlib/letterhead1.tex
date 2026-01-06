@@ -1,0 +1,173 @@
+\usepackage[a4paper,lmargin=25mm,textwidth=33em,tmargin=24mm,bmargin=53mm]{geometry}
+\usepackage{calc}
+\usepackage{amsmath,xltxtra,fontspec,xunicode}
+\usepackage{titlesec}
+
+\usepackage{paralist,enumitem,varwidth,indentfirst}
+\setdefaultleftmargin{4em}{2em}{1em}{1em}{1em}{1em}
+
+\usepackage{datetime2}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfpagemode=FullScreen
+}
+
+
+
+\usepackage{xeCJK,xeCJKfntef}
+% \newcommand{\myvphantom}[0]{\vphantom{QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890ςρθδφγηξλζχψβμ汉ひカ\"A}}
+\newcommand{\myvphantom}[0]{\strut}
+\xeCJKsetup{PunctStyle=plain,RubberPunctSkip=false,CJKglue=\strut\hskip 0pt,CJKecglue=\strut\hskip 0.22em plus 200pt}
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt
+
+% =========================================
+\usepackage{fancyhdr}
+\usepackage{graphicx,eso-pic}
+
+% Optional fonts: Libertinus Serif, Tinos, Literata
+\setmainfont{Libertinus Serif}
+\setromanfont{Libertinus Serif}
+\setsansfont{Seravek}
+\setmonofont{JetBrains Mono NL}
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKromanfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans CJK SC}
+% =========================================
+
+% Document metadata
+\newcommand{\cacheddoctitle}[0]{Untitled Document}
+\newcommand{\cacheddoctitlebig}[0]{\cacheddoctitle}
+\newcommand{\cacheddoctitlefooter}[0]{\cacheddoctitle}
+\newcommand{\cacheddocauthor}[0]{Unknown Author}
+\newcommand{\cacheddocdate}[0]{\today}
+\newcommand{\docsetup}[3]{
+    \title{#1}
+    \author{#2}
+    \date{#3}
+    \renewcommand{\cacheddoctitle}{#1}
+    \renewcommand{\cacheddocauthor}{#2}
+    \renewcommand{\cacheddocdate}{#3}
+    \hypersetup{
+        colorlinks=false,
+        pdftitle={#1},
+        pdfpagemode=FullScreen,
+    }
+}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+%\input{/home/neruthes/DEV/ntexlibs/lib/_common.tex}
+%\input{/home/neruthes/DEV/ntexlibs/lib/_fontsets.tex}
+
+
+\setlength{\headheight}{30mm}
+
+\graphicspath{ {/home/neruthes/DEV/ntexlibs/pic/} {node_modules/libtexneruthes/pic} }
+
+\linespread{1.0}
+
+\fancypagestyle{plain}{
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+    \fancyhf{}
+    \lhead{}
+    \chead{}
+    \rhead{}
+    \lfoot{}
+    \cfoot{}
+    \rfoot{}
+}
+\pagestyle{empty}
+
+
+% Components
+\newcommand{\emailstyleheader}[3]{
+    % $1=subject $2=from $3=to
+    \parbox{5em}{\textsf{Subject:}}#1\\
+    \parbox{5em}{\textsf{From:}}#2\\
+    \parbox{5em}{\textsf{To:}}#3\\
+}
+\newcommand{\recipientaddress}[1]{
+    % $1=content
+    \noindent\begin{minipage}{\linewidth}
+        \fontspec[Ligatures=TeX]{Myriad Pro}
+        \mdseries
+        \small
+        \raggedright
+        #1
+    \end{minipage}\par
+    \noindent\rule{0.618\linewidth}{0.4pt}\par
+    \vskip 15mm
+}
+\newcommand{\lettersection}[1]{\vskip 1em\noindent\textbf{#1}\par\nopagebreak}
+\newlength{\lettersignaturewidth}
+\newcommand{\lettersignature}[2]{
+    % $1=content $2=widestline
+    \nopagebreak
+    \settowidth{\lettersignaturewidth}{#2}
+    \parskip=8pt
+    \vskip 1.5em
+    \vfill\noindent
+    \fboxsep=0pt
+    \hfill
+    \begin{minipage}{\lettersignaturewidth+0.2pt}
+        \parskip=8pt%
+        #1\par
+    \end{minipage}\par
+    \vskip 1.5em
+    \vfill
+    \vfill
+}
+\newcommand{\letterfooterfont}[0]{\fontspec[Ligatures=TeX]{NewComputerModern10}\CJKfontspec{FandolSong}}
+\renewcommand{\letterfooterfont}[0]{\ttfamily\fontsize{8pt}{10pt}\selectfont}
+\newcommand{\ifootcornerL}[0]{https://neruthes.xyz}
+\newcommand{\ifootcornerR}[0]{i@neruthes.xyz}
+\newcommand{\usepagenumfoot}[0]{
+    \renewcommand{\ifootcornerR}{\thepage}
+}
+
+
+% Decorations
+\AddToShipoutPictureFG{\put(210mm-19mm-25mm,297mm-19mm-16mm){%
+    \includegraphics[width=19mm]{neruthes-force-circle-for-circle.png}%
+}}
+\newcommand{\letterfooterwidth}[0]{42em}
+\AddToShipoutPictureFG{\put(0,15mm){%
+    \begin{minipage}{\paperwidth}\center
+        \begin{minipage}{\letterfooterwidth}
+            \hrule
+            \vspace{4pt}
+
+            \letterfooterfont
+            \ifootcornerL
+            \hfill
+            \ifootcornerR
+        \end{minipage}
+    \end{minipage}
+}}
+
+
+
+
+\frenchspacing
+
+\usepackage{listings}
+\lstset{
+	basicstyle=\ttfamily\footnotesize,
+	numbersep=5pt,
+	backgroundcolor=\color{black!5},
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2,
+	captionpos=b,
+	breaklines=true,
+	breakatwhitespace=true,
+	breakautoindent=true,
+	linewidth=\textwidth
+}

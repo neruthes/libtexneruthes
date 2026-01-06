@@ -1,0 +1,123 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[a4paper,textwidth=36em,tmargin=37mm,bmargin=32mm]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{calc}
+\usepackage{fontspec}
+\usepackage{datetime2}
+
+
+\usepackage[PunctStyle=plain,RubberPunctSkip=false,CJKglue=\hskip 0pt,CJKecglue=\hskip 4pt plus 20pt]{xeCJK}
+\usepackage{xeCJKfntef}
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+% =========================================
+\usepackage{paralist}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\graphicspath{ {/home/neruthes/DEV/ntexlibs} }
+\setmainfont{Old Standard TT}
+\setromanfont{Old Standard TT}
+\setsansfont{Inter}
+\setmonofont{New Heterodox Mono}
+\setCJKmainfont{Noto Sans CJK SC}
+\setCJKromanfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Serif CJK SC}
+
+\setdefaultleftmargin{2em}{2em}{1em}{1em}{1em}{1em}
+
+\pagestyle{empty}
+% =========================================
+
+% =========================================
+% START CORPORATION CONFIG
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1pt}
+% END CORPORATION CONFIG
+% =========================================
+
+
+\linespread{1.25}
+
+
+
+
+\newcommand{\tval}[1]{{\hspace{14pt}\ttfamily\upshape\mdseries\small\textcolor{red}{#1}}}
+\newcommand{\bondkeyval}[2]{
+	{\small#1} & {\tval{#2}}
+}
+\providecommand{\mycellitem}[2]{%
+    \parbox{0.5\textwidth-0.5em}{%
+        \center
+        \Large\ttfamily
+        \strut#2\par\vskip 5pt
+        \hrule\par\vskip 5pt
+        \footnotesize\ttfamily#1
+    }%
+}
+
+
+\newcommand{\makeBondPage}[4]{
+	% argv: batch_code, amount, date_issue, date_mature
+
+	\color{blue!12!black!80!white}
+	\begin{center}
+		\Huge\ttfamily\bfseries
+		NERUTHES\\TREASURY\\BOND
+		\vskip 35pt
+
+		\large\ttfamily\mdseries\color{red}
+		BATCH NO #1
+	\end{center}
+	\vskip 20pt
+	\vfill
+
+
+	\rmfamily
+	\begin{center}
+		\large
+
+		\rmfamily\normalsize
+		\MakeUppercase{for value received}\par
+		\MakeUppercase{I promise to pay to the bearer}\par
+		\MakeUppercase{the sum of}\par\vskip 5pt
+		\Huge\bfseries\ttfamily
+        \strut#2\par
+		\hrule
+	\end{center}
+    \par\vskip 15pt
+
+    \mycellitem{DATE OF ISSUE}{#3}\hfill%
+    \mycellitem{DATE OF MATURITY}{#4}\par
+    \vskip 10pt
+    \mycellitem{SIGNATURE}{}\hfill%
+    \mycellitem{STAMP}{}\par%
+    \clearpage
+}
+
+
+
+
+\AddToShipoutPictureFG{%
+	\put(0.5\paperwidth-15mm,0.5\paperheight-15mm){%
+		\includegraphics[width=30mm]{pic/neruthes-grandseal-core.png}
+	}
+}
+\AddToShipoutPictureBG{%
+	\put(0.5\paperwidth-0.5\paperheight,0mm){%
+        % Tile
+		{\includegraphics[width=\paperheight,height=\paperheight]{patterns/_dist/p43.DDDDDD.svg.pdf}}%
+	}%
+	\put(0.5\paperwidth-0.5\paperheight,0mm){%
+        % Frame
+		{\includegraphics[width=\paperheight,height=\paperheight]{patterns/_dist/p48.777777.svg.pdf}}%
+		% {\includegraphics[width=\paperheight,height=\paperheight]{patterns/_dist/p48.gradient.blue-green.png}}%
+	}%
+}
