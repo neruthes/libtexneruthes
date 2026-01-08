@@ -49,9 +49,9 @@
 #import "@preview/cjk-unbreak:0.2.1": remove-cjk-break-space
 
 
-#let __font_size = 10.95pt
-#let __textwidth = __font_size * 33
-#let __textwidth_alt = __font_size * 42
+#let __font_size = 10.0pt
+#let __textwidth = __font_size * 36
+#let __textwidth_alt = __font_size * 46
 #let __ideal_left_margin = (210mm - __textwidth_alt) / 2
 
 
@@ -267,7 +267,7 @@
 #let letter_to(content) = block(width: 100%, {
   block(__stylerauxtext(content))
   box(width: 50%, height: 0.4pt, fill: black)
-  v(10mm)
+  v(5mm)
 })
 
 
