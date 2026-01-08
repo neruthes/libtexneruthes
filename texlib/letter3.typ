@@ -55,8 +55,8 @@
 #let __ideal_left_margin = (210mm - __textwidth_alt) / 2
 
 
-#let __font_serif = ("Libertinus Serif", "New Computer Modern", "Latin Modern Roman", "Noto Serif CJK SC")
-#let __font_sans = ("Myriad Pro", "Geist", "TeX Gyre Heros", "Helvetica Neue", "Open Sans", "Noto Sans CJK SC")
+#let __font_serif = ("XCharter", "Libertinus Serif", "New Computer Modern", "Latin Modern Roman", "Noto Serif CJK SC")
+#let __font_sans = ("Myriad Pro", "Seravek", "Geist", "TeX Gyre Heros", "Helvetica Neue", "Open Sans", "Noto Sans CJK SC")
 
 #let __footer_left_content = state("__footer_left_content", [`https://neruthes.xyz`])
 
