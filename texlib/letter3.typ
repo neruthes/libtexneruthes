@@ -1,50 +1,8 @@
-#let __global_foreground_registry = state("__global_foreground_registry", (:))
-#let __global_background_registry = state("__global_background_registry", (:))
-
-// --- The Factory ---
-#let ___common_bgfg_handler_factory(is_background: true) = {
-  return () => {
-    context {
-      let reg_state = if is_background { __global_background_registry } else { __global_foreground_registry }
-      let p = str(counter(page).get().first())
-
-      // Use .final() to ensure we see updates made later in the page flow
-      let reg = reg_state.final()
-
-      if reg.keys().contains(p) {
-        reg.at(p).join()
-      }
-    }
-  }
-}
-
-#let osepic_default_foreground_handler = ___common_bgfg_handler_factory(is_background: false)
-#let osepic_default_background_handler = ___common_bgfg_handler_factory(is_background: true)
-
-// --- The Registry Helpers ---
-#let _add_to_reg(reg_state, content) = context {
-  let p = str(counter(page).get().first())
-  reg_state.update(reg => {
-    let reg = if type(reg) != dictionary { (:) } else { reg }
-    let items = reg.at(p, default: ())
-    items.push(content)
-    reg.insert(p, items)
-    reg
-  })
-}
-
-#let add_to_shipout_bg(content) = _add_to_reg(__global_background_registry, content)
-#let add_to_shipout_fg(content) = _add_to_reg(__global_foreground_registry, content)
+// 0a130332fc8bf59282d5e6f0666381fc
+// refetchw=https://raw.githubusercontent.com/neruthes/libtexneruthes/refs/heads/master/texlib/letter3.typ
 
 
-
-
-
-
-
-
-
-
+#import "@preview/ose-pic:0.1.2": *
 #import "@preview/based:0.2.0": base64
 #import "@preview/cjk-unbreak:0.2.1": remove-cjk-break-space
 
@@ -226,6 +184,7 @@
   )
   set list(body-indent: 1em, indent: 1em, marker: box(width: 0pt, align(right, [•])))
   show: remove-cjk-break-space
+  show: ose-pic-init
 
   doc
 }
